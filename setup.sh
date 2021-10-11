@@ -36,9 +36,6 @@ kubectl apply -f srcs/yaml_services/ftps.yaml &> /dev/null
 kubectl apply -f srcs/yaml_services/grafana.yaml &> /dev/null
 kubectl apply -f srcs/yaml_services/influxdb.yaml &> /dev/null
 
-echo "==============================================================================================="
-echo
-kubectl get svc
 echo "-----------------------------------------------------------------------------------------------------------------"
 echo "| Services      | SSH nginx     | PHPMyAdmin    | InfluxDB      | FTPS          | Wordpress     | Grafana       |"
 echo "|---------------------------------------------------------------------------------------------------------------|"
@@ -46,3 +43,5 @@ echo "| Login         | ssh_admin     | wp_admin      | graf_admin    | ftp_admi
 echo "| Password      | 0101          | 1010          | 10101         | 01010         | cclaude1      | admin         |"
 echo "-----------------------------------------------------------------------------------------------------------------\n"
 echo "Open 172.17.0.2 in a web browser"
+kubectl get svc
+echo
