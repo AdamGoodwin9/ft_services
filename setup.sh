@@ -2,12 +2,14 @@
 
 minikube delete
 minikube start --driver=docker --cpus=2
+eval $(minikube docker-env)
 minikube addons enable metrics-server
 minikube addons enable dashboard &> /dev/null
 minikube addons enable metallb
 kubectl apply -f srcs/yaml_metallb/metallb.yaml &> /dev/null
-eval $(minikube docker-env)
-echo
+echo sleeping
+sleep 5
+echo awake
 
 docker build -t nginx_alpine srcs/nginx
 docker build -t wordpress_alpine srcs/wordpress
