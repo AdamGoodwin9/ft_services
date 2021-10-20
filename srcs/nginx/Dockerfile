@@ -2,6 +2,9 @@ FROM alpine:latest
 
 COPY nginx.conf index.html telegraf.conf setup.sh ./
 
+RUN cat /etc/resolv.conf
+RUN cat /etc/hosts
+
 # Install nginx and dependencies
 RUN apk update && \
 	apk add --no-cache nginx openssh openssl

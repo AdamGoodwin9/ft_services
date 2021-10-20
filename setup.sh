@@ -2,14 +2,22 @@
 
 minikube delete
 minikube start --driver=docker --cpus=2
+
 eval $(minikube docker-env)
 minikube addons enable metrics-server
 minikube addons enable dashboard &> /dev/null
 minikube addons enable metallb
-kubectl apply -f srcs/yaml_metallb/metallb.yaml &> /dev/null
-echo sleeping
-sleep 5
-echo awake
+
+while true; do
+  kubectl -n kube-system get pod | grep -i Pending 1> /dev/null 2>&1
+  if [ $? == 0 ] ; then
+     echo "Cluster is not ready, sleeping"
+    sleep 1
+  else
+    break
+  fi
+done
+
 
 docker build -t nginx_alpine srcs/nginx
 docker build -t wordpress_alpine srcs/wordpress
@@ -18,6 +26,8 @@ docker build -t phpmyadmin_alpine srcs/phpmyadmin
 docker build -t ftps_alpine srcs/ftps
 docker build -t grafana_alpine srcs/grafana
 docker build -t influxdb_alpine srcs/influxdb
+
+kubectl apply -f srcs/yaml_metallb/metallb.yaml &> /dev/null
 
 kubectl apply -f srcs/yaml_volumes/mysql.yaml &> /dev/null
 kubectl apply -f srcs/yaml_volumes/influxdb.yaml &> /dev/null
