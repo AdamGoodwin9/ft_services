@@ -28,9 +28,10 @@ docker build -t grafana_alpine srcs/grafana
 docker build -t influxdb_alpine srcs/influxdb
 
 kubectl apply -f srcs/yaml_metallb/metallb.yaml &> /dev/null
+kubectl apply -f srcs/yaml_volumes/influxdb.yaml &> /dev/null
+sleep 4
 
 kubectl apply -f srcs/yaml_volumes/mysql.yaml &> /dev/null
-kubectl apply -f srcs/yaml_volumes/influxdb.yaml &> /dev/null
 
 kubectl apply -f srcs/yaml_deployments/nginx.yaml &> /dev/null
 kubectl apply -f srcs/yaml_deployments/wordpress.yaml &> /dev/null
