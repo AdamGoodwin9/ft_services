@@ -9,6 +9,6 @@ spec:
     - name: php-port
       protocol: TCP
       port: 5000
-      targetPort: 80
+      targetPort: 5000
   type: LoadBalancer
   loadBalancerIP: 172.17.0.4

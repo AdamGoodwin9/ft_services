@@ -29,7 +29,9 @@ docker build -t influxdb_alpine srcs/influxdb
 
 kubectl apply -f srcs/yaml_metallb/metallb.yaml &> /dev/null
 kubectl apply -f srcs/yaml_volumes/influxdb.yaml &> /dev/null
-sleep 4
+kubectl apply -f srcs/yaml_deployments/influxdb.yaml &> /dev/null
+kubectl apply -f srcs/yaml_services/influxdb.yaml &> /dev/null
+sleep 8
 
 kubectl apply -f srcs/yaml_volumes/mysql.yaml &> /dev/null
 
@@ -39,7 +41,6 @@ kubectl apply -f srcs/yaml_deployments/mysql.yaml &> /dev/null
 kubectl apply -f srcs/yaml_deployments/phpmyadmin.yaml &> /dev/null
 kubectl apply -f srcs/yaml_deployments/ftps.yaml &> /dev/null
 kubectl apply -f srcs/yaml_deployments/grafana.yaml &> /dev/null
-kubectl apply -f srcs/yaml_deployments/influxdb.yaml &> /dev/null
 
 kubectl apply -f srcs/yaml_services/nginx.yaml &> /dev/null
 kubectl apply -f srcs/yaml_services/wordpress.yaml &> /dev/null
@@ -47,7 +48,6 @@ kubectl apply -f srcs/yaml_services/mysql.yaml &> /dev/null
 kubectl apply -f srcs/yaml_services/phpmyadmin.yaml &> /dev/null
 kubectl apply -f srcs/yaml_services/ftps.yaml &> /dev/null
 kubectl apply -f srcs/yaml_services/grafana.yaml &> /dev/null
-kubectl apply -f srcs/yaml_services/influxdb.yaml &> /dev/null
 
 echo "-----------------------------------------------------------------------------------------------------------------"
 echo "| Services      | SSH nginx     | PHPMyAdmin    | InfluxDB      | FTPS          | Wordpress     | Grafana       |"
