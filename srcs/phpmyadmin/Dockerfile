@@ -12,8 +12,7 @@ ADD https://files.phpmyadmin.net/phpMyAdmin/5.0.2/phpMyAdmin-5.0.2-english.tar.g
 
 # Install PHPMyAdmin
 RUN tar -xvf phpMyAdmin-5.0.2-english.tar.gz && \
-	mv phpMyAdmin-5.0.2-english /www && \
-	mv config.inc.php /www/ && \
+	mv phpMyAdmin-5.0.2-english /www && mv config.inc.php /www/ && \
 	rm -f phpMyAdmin-5.0.2-english.tar.gz
 
 # Install telegraf
