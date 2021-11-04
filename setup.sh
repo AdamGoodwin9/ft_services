@@ -14,13 +14,20 @@ while true; do
   fi
 done
 
-docker build -t nginx_alpine srcs/nginx &> /dev/null
-docker build -t wordpress_alpine srcs/wordpress &> /dev/null
-docker build -t mysql_alpine srcs/mysql &> /dev/null
-docker build -t phpmyadmin_alpine srcs/phpmyadmin &> /dev/null
-docker build -t ftps_alpine srcs/ftps &> /dev/null
-docker build -t grafana_alpine srcs/grafana &> /dev/null
-docker build -t influxdb_alpine srcs/influxdb &> /dev/null
+echo building nginx image
+docker build -t nginx-img srcs/nginx &> /dev/null
+echo building wordpress image
+docker build -t wordpress-img srcs/wordpress &> /dev/null
+echo building mysql image
+docker build -t mysql-img srcs/mysql &> /dev/null
+echo building phpmyadmin image
+docker build -t phpmyadmin-img srcs/phpmyadmin &> /dev/null
+echo building ftps image
+docker build -t ftps-img srcs/ftps &> /dev/null
+echo building grafana image
+docker build -t grafana-img srcs/grafana &> /dev/null
+echo building influxdb image
+docker build -t influxdb-img srcs/influxdb &> /dev/null
 
 kubectl apply -f srcs/yaml_metallb/metallb.yaml &> /dev/null
 kubectl apply -f srcs/yaml_volumes/influxdb.yaml &> /dev/null
@@ -42,9 +49,11 @@ kubectl apply -f srcs/yaml_services/phpmyadmin.yaml &> /dev/null
 kubectl apply -f srcs/yaml_services/ftps.yaml &> /dev/null
 kubectl apply -f srcs/yaml_services/grafana.yaml &> /dev/null
 
-#PhpMyAdmin: wp_admin 1010"
-#Wordpress: agoodwin 12345"
-#grafana: admin admin"
-#ftps: ftp_admin 01010"
+kubectl get service
+
+echo PhpMyAdmin: agoodwin 1234
+echo Wordpress: agoodwin 12345
+echo grafana: agoodwin 1234
+echo ftps: agoodwin 1234
 
 minikube dashboard &

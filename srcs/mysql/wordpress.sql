@@ -2,7 +2,7 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: mysql-service
+-- Host: mysql-svc
 -- Generation Time: Nov 02, 2021 at 05:57 PM
 -- Server version: 10.5.12-MariaDB
 -- PHP Version: 7.4.25

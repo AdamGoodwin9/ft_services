@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql-deployment
+  name: mysql-dep
 spec:
   selector:
     matchLabels:
@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: mysql_alpine
+        image: mysql-img
         imagePullPolicy: Never
         ports:
         - containerPort: 3306
@@ -32,4 +32,4 @@ spec:
       volumes:
       - name: mysql-storage
         persistentVolumeClaim:
-          claimName: mysql-volume
+          claimName: mysql-vol

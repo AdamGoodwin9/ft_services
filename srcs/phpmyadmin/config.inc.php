@@ -15,7 +15,7 @@ declare(strict_types=1);
  * This is needed for cookie based authentication to encrypt password in
  * cookie. Needs to be 32 chars long.
  */
-$cfg['blowfish_secret'] = 'MerciMaximeLePlusBeauPourTonAide'; /* YOU MUST FILL IN THIS FOR COOKIE AUTH! */
+$cfg['blowfish_secret'] = 'Qb[S7uzc3YBoCirfLsyUT8EuRryIqdkw';
 
 /**
  * Servers configuration
@@ -29,7 +29,7 @@ $i++;
 /* Authentication type */
 $cfg['Servers'][$i]['auth_type'] = 'cookie';
 /* Server parameters */
-$cfg['Servers'][$i]['host'] = 'mysql-service';
+$cfg['Servers'][$i]['host'] = 'mysql-svc';
 $cfg['Servers'][$i]['compress'] = false;
 $cfg['Servers'][$i]['AllowNoPassword'] = false;
 
@@ -123,6 +123,8 @@ $cfg['SaveDir'] = '';
  * default = 1
  */
 //$cfg['PropertiesNumColumns'] = 2;
+
+$cfg['ThemeDefault'] = 'metro';
 
 /**
  * Set to true if you want DB-based query history.If false, this utilizes

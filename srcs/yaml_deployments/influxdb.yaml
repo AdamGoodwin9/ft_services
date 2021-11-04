@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: influxdb-deployment
+  name: influxdb-dep
 spec:
   selector:
     matchLabels:
@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: influxdb
-        image: influxdb_alpine
+        image: influxdb-img
         imagePullPolicy: Never
         ports:
         - containerPort: 8086
@@ -32,4 +32,4 @@ spec:
       volumes:
       - name: influxdb-storage
         persistentVolumeClaim:
-          claimName: influxdb-volume
+          claimName: influxdb-vol

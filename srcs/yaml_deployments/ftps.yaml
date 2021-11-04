@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ftps-deployment
+  name: ftps-dep
 spec:
   selector:
     matchLabels:
@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
       - name: ftps
-        image: ftps_alpine
+        image: ftps-img
         imagePullPolicy: Never
         ports:
         - containerPort: 20

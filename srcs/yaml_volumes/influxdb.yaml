@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: influxdb-volume
+  name: influxdb-vol
   labels:
     app: influxdb
 spec:
