@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: influxdb-vol
+  labels:
+    app: influxdb
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb-dep
+spec:
+  selector:
+    matchLabels:
+      app: influxdb
+  template:
+    metadata:
+      labels:
+        app: influxdb
+    spec:
+      containers:
+      - name: influxdb
+        image: influxdb-img
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8086
+          name: idb-port
+        volumeMounts:
+        - name: influxdb-storage
+          mountPath: /root
+        livenessProbe:
+          exec:
+            command:
+            - /bin/ash
+            - -c
+            - 'pgrep telegraf && pgrep influxd'
+          initialDelaySeconds: 10
+          periodSeconds: 5
+      volumes:
+      - name: influxdb-storage
+        persistentVolumeClaim:
+          claimName: influxdb-vol
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: influxdb-svc
+spec:
+  selector:
+    app: influxdb
+  ports:
+    - name: idb-port
+      protocol: TCP
+      port: 8086
+      targetPort: 8086

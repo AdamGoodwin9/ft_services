@@ -8,7 +8,7 @@ while true; do
   kubectl -n kube-system get pod | grep -i Pending 1> /dev/null 2>&1
   if [ $? == 0 ] ; then
      echo "Cluster is not ready, sleeping"
-    sleep 1
+    sleep 2
   else
     break
   fi
@@ -29,31 +29,50 @@ docker build -t grafana-img srcs/grafana &> /dev/null
 echo building influxdb image
 docker build -t influxdb-img srcs/influxdb &> /dev/null
 
-kubectl apply -f srcs/yaml_metallb/metallb.yaml &> /dev/null
-kubectl apply -f srcs/yaml_volumes/influxdb.yaml &> /dev/null
-kubectl apply -f srcs/yaml_deployments/influxdb.yaml &> /dev/null
-kubectl apply -f srcs/yaml_services/influxdb.yaml &> /dev/null
-kubectl apply -f srcs/yaml_volumes/mysql.yaml &> /dev/null
+#metallb
+#influxdb vol dep svc
+#mysql vol dep svc
+#nginx dep svc
+#wordpress dep svc
+#phpmyadmin dep svc
+#ftps dep svc
+#grafana dep svc
 
-kubectl apply -f srcs/yaml_deployments/nginx.yaml &> /dev/null
-kubectl apply -f srcs/yaml_deployments/wordpress.yaml &> /dev/null
-kubectl apply -f srcs/yaml_deployments/mysql.yaml &> /dev/null
-kubectl apply -f srcs/yaml_deployments/phpmyadmin.yaml &> /dev/null
-kubectl apply -f srcs/yaml_deployments/ftps.yaml &> /dev/null
-kubectl apply -f srcs/yaml_deployments/grafana.yaml &> /dev/null
 
-kubectl apply -f srcs/yaml_services/nginx.yaml &> /dev/null
-kubectl apply -f srcs/yaml_services/wordpress.yaml &> /dev/null
-kubectl apply -f srcs/yaml_services/mysql.yaml &> /dev/null
-kubectl apply -f srcs/yaml_services/phpmyadmin.yaml &> /dev/null
-kubectl apply -f srcs/yaml_services/ftps.yaml &> /dev/null
-kubectl apply -f srcs/yaml_services/grafana.yaml &> /dev/null
+kubectl apply -f srcs/yaml/metallb.yaml &> /dev/null
+kubectl apply -f srcs/yaml/influxdb.yaml &> /dev/null
+kubectl apply -f srcs/yaml/mysql.yaml &> /dev/null
+kubectl apply -f srcs/yaml/nginx.yaml &> /dev/null
+kubectl apply -f srcs/yaml/wordpress.yaml &> /dev/null
+kubectl apply -f srcs/yaml/phpmyadmin.yaml &> /dev/null
+kubectl apply -f srcs/yaml/ftps.yaml &> /dev/null
+kubectl apply -f srcs/yaml/grafana.yaml &> /dev/null
+
+#kubectl apply -f srcs/yaml_volumes/influxdb.yaml &> /dev/null
+#kubectl apply -f srcs/yaml_deployments/influxdb.yaml &> /dev/null
+#kubectl apply -f srcs/yaml_services/influxdb.yaml &> /dev/null
+#kubectl apply -f srcs/yaml_volumes/mysql.yaml &> /dev/null
+#
+#kubectl apply -f srcs/yaml_deployments/nginx.yaml &> /dev/null
+#kubectl apply -f srcs/yaml_deployments/wordpress.yaml &> /dev/null
+#kubectl apply -f srcs/yaml_deployments/mysql.yaml &> /dev/null
+#kubectl apply -f srcs/yaml_deployments/phpmyadmin.yaml &> /dev/null
+#kubectl apply -f srcs/yaml_deployments/ftps.yaml &> /dev/null
+#kubectl apply -f srcs/yaml_deployments/grafana.yaml &> /dev/null
+#
+#kubectl apply -f srcs/yaml_services/nginx.yaml &> /dev/null
+#kubectl apply -f srcs/yaml_services/wordpress.yaml &> /dev/null
+#kubectl apply -f srcs/yaml_services/mysql.yaml &> /dev/null
+#kubectl apply -f srcs/yaml_services/phpmyadmin.yaml &> /dev/null
+#kubectl apply -f srcs/yaml_services/ftps.yaml &> /dev/null
+#kubectl apply -f srcs/yaml_services/grafana.yaml &> /dev/null
 
 kubectl get service
 
 echo PhpMyAdmin: agoodwin 1234
 echo Wordpress: agoodwin 12345
-echo grafana: agoodwin 1234
+echo grafana: admin admin
+echo influxdb: agoodwin 1234
 echo ftps: agoodwin 1234
 
 minikube dashboard &
