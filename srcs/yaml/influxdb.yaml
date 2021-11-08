@@ -10,7 +10,7 @@ spec:
   resources:
     requests:
       storage: 2Gi
-
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -46,7 +46,7 @@ spec:
       - name: influxdb-storage
         persistentVolumeClaim:
           claimName: influxdb-vol
-
+---
 apiVersion: v1
 kind: Service
 metadata:
