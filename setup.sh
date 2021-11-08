@@ -15,25 +15,25 @@ while true; do
 done
 
 echo building nginx image
-cp srcs/.telegraf.conf srcs/nginx/telegraf.conf &> /dev/null
+cp srcs/.telegraf.conf srcs/nginx/telegraf.conf
 docker build -t nginx-img srcs/nginx &> /dev/null
 echo building wordpress image
-cp srcs/.telegraf.conf srcs/wordpress/telegraf.conf &> /dev/null
+cp srcs/.telegraf.conf srcs/wordpress/telegraf.conf
 docker build -t wordpress-img srcs/wordpress &> /dev/null
 echo building mysql image
-cp srcs/.telegraf.conf srcs/mysql/telegraf.conf &> /dev/null
+cp srcs/.telegraf.conf srcs/mysql/telegraf.conf
 docker build -t mysql-img srcs/mysql &> /dev/null
 echo building phpmyadmin image
-cp srcs/.telegraf.conf srcs/phpmyadmin/telegraf.conf &> /dev/null
+cp srcs/.telegraf.conf srcs/phpmyadmin/telegraf.conf
 docker build -t phpmyadmin-img srcs/phpmyadmin &> /dev/null
 echo building ftps image
-cp srcs/.telegraf.conf srcs/ftps/telegraf.conf &> /dev/null
+cp srcs/.telegraf.conf srcs/ftps/telegraf.conf
 docker build -t ftps-img srcs/ftps &> /dev/null
 echo building grafana image
-cp srcs/.telegraf.conf srcs/grafana/telegraf.conf &> /dev/null
+cp srcs/.telegraf.conf srcs/grafana/telegraf.conf
 docker build -t grafana-img srcs/grafana &> /dev/null
 echo building influxdb image
-cp srcs/.telegraf.conf srcs/influxdb/telegraf.conf &> /dev/null
+cp srcs/.telegraf.conf srcs/influxdb/telegraf.conf
 docker build -t influxdb-img srcs/influxdb &> /dev/null
 
 kubectl apply -f srcs/yaml/metallb.yaml &> /dev/null
