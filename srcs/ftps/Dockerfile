@@ -16,7 +16,7 @@ RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/te
 
 COPY telegraf.conf /etc/telegraf/
 
-EXPOSE 20 21 21009-21011
+EXPOSE 21 21000
 
 COPY setup.sh ./
 

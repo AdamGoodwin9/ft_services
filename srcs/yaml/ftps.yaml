@@ -16,16 +16,10 @@ spec:
         image: ftps-img
         imagePullPolicy: Never
         ports:
-        - containerPort: 20
-          name: ftp
         - containerPort: 21
           name: ftps
-        - containerPort: 21009
-          name: pasv-min
-        - containerPort: 21010
-          name: pasv-mid
-        - containerPort: 21011
-          name: pasv-max
+        - containerPort: 21000
+          name: ftps-data
         livenessProbe:
           exec:
             command:
@@ -43,25 +37,13 @@ spec:
   selector:
     app: ftps
   ports:
-    - name: ftp
-      protocol: TCP
-      port: 20
-      targetPort: 20
     - name: ftps
       protocol: TCP
       port: 21
       targetPort: 21
-    - name: pasv-min
+    - name: ftps-data
       protocol: TCP
-      port: 21009
-      targetPort: 21009
-    - name: pasv-mid
-      protocol: TCP
-      port: 21010
-      targetPort: 21010
-    - name: pasv-max
-      protocol: TCP
-      port: 21011
-      targetPort: 21011
+      port: 21000
+      targetPort: 21000
   type: LoadBalancer
   loadBalancerIP: 172.17.0.5
