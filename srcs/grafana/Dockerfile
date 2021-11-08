@@ -11,10 +11,6 @@ COPY grafana.db /usr/share/grafana/data/
 
 EXPOSE 3000
 
-<<<<<<< Updated upstream
 COPY setup.sh ./
 
 CMD ./setup.sh
-=======
-CMD ./setup.sh
->>>>>>> Stashed changes
