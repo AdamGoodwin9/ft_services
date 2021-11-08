@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine
 
 COPY vsftpd.conf telegraf.conf setup.sh ./
 

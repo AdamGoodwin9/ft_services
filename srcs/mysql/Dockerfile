@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine
 
 COPY init_file wordpress.sql my.cnf telegraf.conf setup.sh ./
 

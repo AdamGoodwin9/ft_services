@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine
 
 COPY nginx.conf index.html telegraf.conf setup.sh ./
 

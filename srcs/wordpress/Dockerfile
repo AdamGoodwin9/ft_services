@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine
 
 COPY wp-config.php telegraf.conf setup.sh ./
 
